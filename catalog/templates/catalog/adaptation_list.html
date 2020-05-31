@@ -1,0 +1,47 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Adaptation List</h1>
+
+  <h4>Filter by:</h4>
+
+  <form method="GET" action=".">
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <label for="filterDate">Release date</label>
+      <input type="date" placeholder="yyyy-mm-dd" class="form-control" id="inputCity">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="filterName">Title</label>
+      <input type="text" class="form-control" placeholder="Title contains..." id="filterName">
+    </div>
+    <div class="form-group col-md-2">
+      <label for="filterGenre">Genre</label>
+      <select id="filterGenre" class="form-control">
+        <option selected>Choose genre...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+        <label for="filterAuthor">Director</label>
+        <select id="filterAuthor" class="form-control">
+        <option selected>Choose director...</option>
+        <option>...</option>
+        </select>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Filter</button>
+  </form>
+  
+  {% if adaptation_list %}
+  <ul>
+    {% for adaptation in adaptation_list %}
+      <li>
+        <a href="{{ adaptation.get_absolute_url }}">{{ adaptation.title }}</a> (dir. by {{adaptation.director.first_name}} {{adaptation.director.last_name}})
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no adaptations in the library.</p>
+  {% endif %}       
+{% endblock %}

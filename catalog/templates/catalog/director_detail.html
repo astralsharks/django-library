@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>{{ director.last_name}}, {{ director.first_name }}</h1>
+
+  <p><strong>Date of birth:</strong> {{ director.date_of_birth }}</p>
+  {% if director.date_of_death %}
+    <p><strong>Date of death:</strong> {{ director.date_of_death }}</p>
+  {% endif %}
+  <p><strong>Nationality:</strong> {{ director.nationality }}</p> 
+
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Adaptations</h4>
+
+    {% for adaptation in director.adaptation_set.all %}
+      <hr>
+      <p><strong><a href="{% url 'adaptation-detail' adaptation.pk %}">{{ adaptation.title }}</a></strong> ({{ adaptation.year }})</p>
+      <!-- <p class="text-muted"><strong>Publication year:</strong> {{ book.year }}</p> -->
+    {% endfor %}
+  </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Title: {{ adaptation.title }}</h1>
+
+  <p><strong>Director:</strong> <a href="{% url 'director-detail' adaptation.director.pk %}">{{ adaptation.director }}</a></p> 
+  <p><strong>Original:</strong> <a href="{% url 'book-detail' adaptation.original.pk %}">{{ adaptation.original }}</a></p> 
+  <p><strong>Release year:</strong> {{ adaptation.year }}</p> 
+  <p><strong>Link:</strong> <a href="{{ adaptation.link }}">{{ adaptation.title }}</a></p> 
+  <p><strong>Genre:</strong> {{ adaptation.genre.all|join:", " }}</p>  
+
+  <!-- <div style="margin-left:20px;margin-top:20px">
+    <h4>Adaptations</h4>
+    {% if movie_list %}
+      {% for movie in original.adaptation_set.all %}
+        <p><strong>Adaptation:</strong> {{ movie.title }}</p>
+        <p><strong>Release year:</strong> {{ movie.year }}</p>
+      {% endfor %}
+    {% else %}
+      <p><strong>There are no movie adaptations of this book yet.</strong></p>
+    {% endif %}
+  </div> -->
+{% endblock %}

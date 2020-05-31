@@ -9,22 +9,31 @@
   <div class="form-row">
     <div class="form-group col-md-2">
       <label for="filterDate">Date of birth</label>
-      <input type="date" placeholder="yyyy-mm-dd" class="form-control" id="inputCity">
+      <input type="date" placeholder="yyyy-mm-dd" class="form-control" id="filterDate" name="filterDate">
     </div>
-    <div class="form-group col-md-4">
-      <label for="filterName">Name</label>
-      <input type="text" class="form-control" placeholder="Name contains..." id="filterName">
+    <div class="form-group col-md-3">
+      <label for="filterFirstName">First name</label>
+      <input type="text" class="form-control" placeholder="First name contains..." id="filterFirstName" name="filterFirstName">
     </div>
+    <div class="form-group col-md-3">
+        <label for="filterLastName">Last name</label>
+        <input type="text" class="form-control" placeholder="Last name contains..." id="filterLastName" name="filterLastName">
+      </div>
     <div class="form-group col-md-2">
-      <label for="filterGenre">Nationality</label>
-      <select id="filterGenre" class="form-control">
+      <label for="filterNationality">Nationality</label>
+      <select id="filterNationality" class="form-control" name="filterNationality">
         <option selected>Choose nationality...</option>
-        <option>...</option>
+        {% for nat in nationality %}
+        <option value="{{ nat }}">{{ nat }}</option>
+        {% endfor %}
       </select>
     </div>
   </div>
-  <button type="submit" class="btn btn-primary">Filter</button>
+  <input class="btn btn-primary" type="submit" value="Filter">
+  <a class="btn btn-primary" href="{% url 'authors' %}" id="reset_button">Reset</a>
+
   </form>
+  <hr />
 
   {% if author_list %}
   <ul>

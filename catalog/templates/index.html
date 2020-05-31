@@ -12,46 +12,4 @@
     <li><strong>Directors:</strong> {{ num_directors }}</li>
     
   </ul>
-
-
-<!-- 
-  <form method="GET" action=".">
-    <div class="form-row">
-      <div class="form-group col-md-2">
-        <label for="filterDate">Publication date</label>
-        <input type="date" placeholder="yyyy-mm-dd" class="form-control" id="filterDate" name="filterDate">
-      </div>
-      <div class="form-group col-md-4">
-        <label for="filterName">Title</label>
-        <input type="search" class="form-control" placeholder="Title contains..." id="filterName" name="filterName">
-      </div>
-      <div class="form-group col-md-2">
-        <label for="filterGenre">Genre</label>
-        <select id="filterGenre" class="form-control" name="filterGenre">
-          <option selected>Choose genre...</option>
-          <option>...</option>
-        </select>
-      </div>
-      <div class="form-group col-md-2">
-          <label for="filterAuthor">Author</label>
-          <select id="filterAuthor" class="form-control" name="filterAuthor">
-          <option selected>Choose author...</option>
-          <option>...</option>
-          </select>
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Filter</button>
-    </form>
-
-    <hr />
-
-    <div class="row">
-        <ul>
-            {% for book in queryset %}
-                <li> 
-                    {{ book.title }}
-                </li>
-            {% endfor %}
-        </ul>
-    </div> -->
 {% endblock %}

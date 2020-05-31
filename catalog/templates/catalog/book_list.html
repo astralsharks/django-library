@@ -5,36 +5,43 @@
   <h4>Filter by:</h4>
 
   <form method="GET" action=".">
-  <div class="form-row">
-    <div class="form-group col-md-2">
-      <label for="filterDate">Publication date</label>
-      <input type="date" placeholder="yyyy-mm-dd" class="form-control" id="filterDate" name="filterDate">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="filterName">Title</label>
-      <input type="search" class="form-control" placeholder="Title contains..." id="filterName" name="filterName">
-    </div>
-    <div class="form-group col-md-2">
-      <label for="filterGenre">Genre</label>
-      <select id="filterGenre" class="form-control" name="filterGenre">
-        <option selected>Choose genre...</option>
-        <option>...</option>
-      </select>
-    </div>
-    <div class="form-group col-md-2">
-        <label for="filterAuthor">Author</label>
-        <select id="filterAuthor" class="form-control" name="filterAuthor">
-        <option selected>Choose author...</option>
-        <option>...</option>
+    <div class="form-row">
+      <div class="form-group col-md-2">
+        <label for="filterYear">Publication year</label>
+        <input type="date" placeholder="yyyy" class="form-control" id="filterYear" name="filterYear" maxlength=4>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="filterName">Title</label>
+        <input type="search" class="form-control" placeholder="Title contains..." id="filterName" name="filterName">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="filterGenre">Genre</label>
+        <select id="filterGenre" class="form-control" name="filterGenre">
+          <option selected>Choose genre...</option>
+          {% for gen in genre %}
+          <option value="{{ gen }}">{{ gen }}</option>
+          {% endfor %}
         </select>
+      </div>
+      <div class="form-group col-md-2">
+          <label for="filterAuthor">Author</label>
+          <select id="filterAuthor" class="form-control" name="filterAuthor">
+          <option selected>Choose author...</option>
+          {% for aut in author %}
+          <option value="{{ aut }}">{{ aut }}</option>
+          {% endfor %}
+          </select>
+      </div>
     </div>
-  </div>
-  <button type="submit" class="btn btn-primary">Filter</button>
+    <!-- <button type="submit" class="btn btn-primary">Filter</button> -->
+    <input class="btn btn-primary" type="submit" value="Filter">
+    <a class="btn btn-primary" href="{% url 'books' %}" id="reset_button">Reset</a>
   </form>
-  
+
+  <hr />
   {% if book_list %}
   <ul>
-    {% for book in book_list %}
+    {% for book in book_list %} 
       <li>
         <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
       </li>

@@ -8,31 +8,37 @@
   <form method="GET" action=".">
   <div class="form-row">
     <div class="form-group col-md-2">
-      <label for="filterDate">Release date</label>
-      <input type="date" placeholder="yyyy-mm-dd" class="form-control" id="inputCity">
+      <label for="filterYear">Release year</label>
+      <input type="date" placeholder="yyyy" class="form-control" id="filterYear" name="filterYear" maxlength=4>
     </div>
     <div class="form-group col-md-4">
       <label for="filterName">Title</label>
-      <input type="text" class="form-control" placeholder="Title contains..." id="filterName">
+      <input type="text" class="form-control" placeholder="Title contains..." id="filterName" name="filterName">
     </div>
     <div class="form-group col-md-2">
-      <label for="filterGenre">Genre</label>
-      <select id="filterGenre" class="form-control">
-        <option selected>Choose genre...</option>
-        <option>...</option>
-      </select>
-    </div>
-    <div class="form-group col-md-2">
-        <label for="filterAuthor">Director</label>
-        <select id="filterAuthor" class="form-control">
-        <option selected>Choose director...</option>
-        <option>...</option>
+        <label for="filterGenre">Genre</label>
+        <select id="filterGenre" class="form-control" name="filterGenre">
+          <option selected>Choose genre...</option>
+          {% for gen in genre %}
+          <option value="{{ gen }}">{{ gen }}</option>
+          {% endfor %}
         </select>
     </div>
+    <div class="form-group col-md-2">
+          <label for="filterDirector">Director</label>
+          <select id="filterDirector" class="form-control" name="filterDirector">
+          <option selected>Choose director...</option>
+          {% for dir in director %}
+          <option value="{{ dir }}">{{ dir }}</option>
+          {% endfor %}
+          </select>
+    </div>
   </div>
-  <button type="submit" class="btn btn-primary">Filter</button>
+  <input class="btn btn-primary" type="submit" value="Filter">
+  <a class="btn btn-primary" href="{% url 'adaptations' %}" id="reset_button">Reset</a>
   </form>
   
+  <hr />
   {% if adaptation_list %}
   <ul>
     {% for adaptation in adaptation_list %}
